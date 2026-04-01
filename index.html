@@ -67,26 +67,24 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Full 3D head reconstruction from a single image is essential for applications such as virtual/augmented
-              reality,
-              gaming, and telepresence, yet existing methods still face a clear quality-efficiency trade-off:
-              high-fidelity results usually rely on multi-stage pipelines with heavy per-subject optimization,
-              whereas fast feed-forward approaches often lose geometric accuracy and fine appearance details.
-              To bridge this gap, we propose \textbf{Any3DAvatar}, a fast and high-quality method for single-image
-              3D Gaussian head avatar generation, whose fastest setting reconstructs a full head in under one second
-              while preserving
-              high-fidelity geometry and texture.Our framework is built on three key components. First, we construct a
-              more diverse training
-              dataset to reduce selection bias and improve fine-detail reconstruction under broader identities and
-              conditions, and we further
-              derive a small benchmark split for full-head quality evaluation. Second, we design a feed-forward
-              denoising network that,
-              conditioned on spatially-aware noisy tokens, directly decodes a 3D Gaussian point cloud for one-step
-              reconstruction.
-              Third, we introduce a multi-task learning scheme that jointly optimizes geometry and appearance. Extensive
-              experiments demonstrate
-              that Any3DAvatar delivers consistently superior rendering quality at high speed, significantly
-              outperforming prior 3D full head reconstruction methods
+              Reconstructing a complete 3D head from a single portrait remains challenging because existing methods
+              still face a sharp quality-speed trade-off: high-fidelity pipelines often rely on multi-stage processing
+              and per-subject optimization, while fast feed-forward models struggle with complete geometry and fine
+              appearance details.
+              To bridge this gap, we propose Any3DAvatar, a fast and high-quality method for single-image 3D Gaussian
+              head avatar generation, whose fastest setting reconstructs a full head in under one second while
+              preserving high-fidelity geometry and texture.
+              First, we build AnyHead, a unified data suite that combines identity diversity, dense multi-view
+              supervision, and realistic accessories, filling the main gaps of existing head data in coverage, full-head
+              geometry, and complex appearance.
+              Second, rather than sampling unstructured noise, we initialize from a Plücker-aware structured 3D Gaussian
+              scaffold and perform one-step conditional denoising, formulating full-head reconstruction into a single
+              forward pass while retaining high fidelity.
+              Third, we apply multi-task supervision to the same latent tokens through both 3D Gaussian reconstruction
+              and view-conditioned image reconstruction, improving novel-view texture details and identity consistency
+              at zero extra inference cost.
+              Experiments show that Any3DAvatar outperforms prior single-image full-head reconstruction methods in
+              rendering fidelity while remaining substantially faster.
             </p>
           </div>
         </div>
@@ -480,6 +478,15 @@
                   <source src="./static/videos/text2.mp4" type="video/mp4">
                 </video>
               </div>
+            </div>
+          </div>、
+          <div style="margin-top: 4rem;"></div>
+          <h3 class="title is-4 has-text-centered">Evaluation against Baselines</h3>
+          <div class="columns is-centered">
+            <div class="column">
+             <video muted loop autoplay>
+              <source src="./static/videos/comparison_video-page.mp4" type="video/mp4">
+             </video>
             </div>
           </div>
         </div>
